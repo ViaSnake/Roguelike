@@ -8,12 +8,30 @@ class Rect:
     def __init__(self, sx, sy, ex, ey):
         self.sx, self.sy = sx, sy
         self.ex, self.ey = ex, ey
-
-    def get_area(self):
-        x = self.ex - self.sx
-        y = self.ey - self.sy
-        return x * y
     
+    def get_sx(self):
+        return self.sx
+
+    def get_sy(self):
+        return self.sy
+    
+    def get_ex(self):
+        return self.ex
+    
+    def get_ey(self):
+        return self.ey
+
+    def get_w(self):
+        return self.ex - self.sx
+    
+    def get_h(self):
+        return self.ey - self.sy
+
+class Room:
+    def __init__(self, sx, sy, ex, ey):
+        self.sx, self.sy = sx, sy
+        self.ex, self.ey = ex, ey
+
     def get_sx(self):
         return self.sx
 
