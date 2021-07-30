@@ -9,7 +9,7 @@ class Rect:
         self.sx, self.sy = sx, sy
         self.ex, self.ey = ex, ey
 
-    def area(self):
+    def get_area(self):
         x = self.ex - self.sx
         y = self.ey - self.sy
         return x * y
@@ -36,7 +36,7 @@ class App:
     def __init__(self):
         pyxel.init(SIZE_X, SIZE_Y)
 
-        self.rect = [Rect(0, 0, 100, 255), Rect(101, 0, 255, 255)]
+        self.rect = []
 
         pyxel.run(self.update, self.draw)
 
@@ -49,6 +49,9 @@ class App:
 
         for rect in self.rect:
             pyxel.rect(rect.get_sx(), rect.get_sy(), rect.get_w(), rect.get_h(), 9)
+
+    def generate(self):
+        pass
 
 if __name__ == "__main__":
     App()
