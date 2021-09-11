@@ -4,6 +4,11 @@ import random
 SIZE_X = 255
 SIZE_Y = 255
 
+RECT_MIN_SIZE = 50
+
+ROOM_MAX_SIZE = 10
+ROOM_MIN_SIZE = 5
+
 class Rect:
     def __init__(self, sx, sy, ex, ey):
         self.sx, self.sy = sx, sy
@@ -92,7 +97,7 @@ class App:
                 if a < b:
                     print("X", a, b)
                     x = random.randint(a, b)
-                    if x - _sx > 50 and _ex - x > 50:
+                    if x - _sx > RECT_MIN_SIZE and _ex - x > RECT_MIN_SIZE:
                         self.rects.append(Rect(_sx, _sy, x, _ey))
                         self.rects.append(Rect(x, _sy, _ex, _ey))
                         is_split = True
@@ -104,13 +109,15 @@ class App:
                 if a < b:
                     print("Y", a, b)
                     y = random.randint(a, b)
-                    if y - _sy > 50 and _ey - y > 50:
+                    if y - _sy > RECT_MIN_SIZE and _ey - y > RECT_MIN_SIZE:
                         self.rects.append(Rect(_sx, _sy, _ex, y))
                         self.rects.append(Rect(_sx, y, _ex, _ey))
                         is_split = True
         
             if is_split:
                 self.rects.remove(self.rects[rect])
+
+
 
 if __name__ == "__main__":
     App()
