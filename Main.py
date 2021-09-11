@@ -70,7 +70,7 @@ class App:
     def draw(self):
         pyxel.cls(0)
 
-        for rect in self.rect:
+        for rect in self.rects:
             pyxel.rectb(rect.get_sx(), rect.get_sy(), rect.get_w(), rect.get_h(), 9)
 
     def generate_dungeon(self):
