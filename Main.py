@@ -6,8 +6,8 @@ SIZE_Y = 255
 
 RECT_MIN_SIZE = 50
 
-ROOM_MAX_SIZE = 10
-ROOM_MIN_SIZE = 5
+ROOM_MAX_SIZE = 40
+ROOM_MIN_SIZE = 10
 
 class Rect:
     def __init__(self, sx, sy, ex, ey):
@@ -33,28 +33,21 @@ class Rect:
         return self.ey - self.sy
 
 class Room:
-    def __init__(self, sx, sy, ex, ey):
-        self.sx, self.sy = sx, sy
-        self.ex, self.ey = ex, ey
+    def __init__(self, x, y, weight, height):
+        self.x, self.y = x, y
+        self.weight, self.height = weight, height
 
-    def get_sx(self):
-        return self.sx
+    def get_x(self):
+        return self.x
 
-    def get_sy(self):
-        return self.sy
+    def get_y(self):
+        return self.y
+
+    def get_weight(self):
+        return self.weight
     
-    def get_ex(self):
-        return self.ex
-    
-    def get_ey(self):
-        return self.ey
-
-    def get_w(self):
-        return self.ex - self.sx
-    
-    def get_h(self):
-        return self.ey - self.sy
-
+    def get_height(self):
+        return self.height
 class App:
     def __init__(self):
         pyxel.init(SIZE_X, SIZE_Y)
@@ -62,6 +55,8 @@ class App:
         self.rects = [
             Rect(0, 0, SIZE_X, SIZE_Y)
         ]
+
+        self.rooms = []
 
         self.generate_dungeon()
 
@@ -77,6 +72,9 @@ class App:
 
         for rect in self.rects:
             pyxel.rectb(rect.get_sx(), rect.get_sy(), rect.get_w(), rect.get_h(), 9)
+
+        for room in self.rooms:
+            pyxel.rectb(room.get_x(), room.get_y(), room.get_weight(), room.get_height(), 5)
 
     def generate_dungeon(self):
         for i in range(0, 5):
@@ -117,7 +115,14 @@ class App:
             if is_split:
                 self.rects.remove(self.rects[rect])
 
+        for rect in self.rects:
+            _width = random.randint(ROOM_MIN_SIZE, ROOM_MAX_SIZE)
+            _height = random.randint(ROOM_MIN_SIZE, ROOM_MAX_SIZE)
 
+            _x = random.randint(rect.get_sx() + 1, rect.get_ex() - _width - 1)
+            _y = random.randint(rect.get_sy() + 1, rect.get_ey() - _height - 1)
+
+            self.rooms.append(Room(_x, _y, _width, _height))
 
 if __name__ == "__main__":
     App()
