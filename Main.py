@@ -4,6 +4,8 @@ import random
 SIZE_X = 255
 SIZE_Y = 255
 
+MAX_RECTS = 10
+
 RECT_MIN_SIZE = 50
 
 ROOM_MAX_SIZE = 40
@@ -77,7 +79,7 @@ class App:
             pyxel.rectb(room.get_x(), room.get_y(), room.get_weight(), room.get_height(), 5)
 
     def generate_dungeon(self):
-        for i in range(0, 5):
+        for i in range(0, MAX_RECTS):
             rect = random.randint(0, len(self.rects) - 1)
 
             _sx = self.rects[rect].get_sx()
