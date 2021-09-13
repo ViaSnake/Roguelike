@@ -8,7 +8,7 @@ MAX_RECTS = 10
 
 RECT_MIN_SIZE = 50
 
-ROOM_MAX_SIZE = 40
+ROOM_MAX_SIZE = 45
 ROOM_MIN_SIZE = 10
 
 class Rect:
@@ -80,7 +80,10 @@ class App:
 
     def generate_dungeon(self):
         for i in range(0, MAX_RECTS):
-            rect = random.randint(0, len(self.rects) - 1)
+            if len(self.rects) <= 1:
+                rect = random.randint(0, len(self.rects) - 1)
+            else:
+                rect = random.randint(len(self.rects) - 2, len(self.rects) - 1)
 
             _sx = self.rects[rect].get_sx()
             _sy = self.rects[rect].get_sy()
