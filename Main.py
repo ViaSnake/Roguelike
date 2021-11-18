@@ -50,6 +50,7 @@ class Room:
     
     def get_height(self):
         return self.height
+
 class App:
     def __init__(self):
         pyxel.init(SIZE_X, SIZE_Y)
