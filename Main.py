@@ -9,30 +9,32 @@ MAX_RECTS = 10
 RECT_MIN_SIZE = 50
 
 ROOM_MAX_SIZE = 45
-ROOM_MIN_SIZE = 10
+ROOM_MIN_SIZE = 5
+
 
 class Rect:
     def __init__(self, sx, sy, ex, ey):
         self.sx, self.sy = sx, sy
         self.ex, self.ey = ex, ey
-    
+
     def get_sx(self):
         return self.sx
 
     def get_sy(self):
         return self.sy
-    
+
     def get_ex(self):
         return self.ex
-    
+
     def get_ey(self):
         return self.ey
 
     def get_w(self):
         return self.ex - self.sx
-    
+
     def get_h(self):
         return self.ey - self.sy
+
 
 class Room:
     def __init__(self, x, y, weight, height):
@@ -47,9 +49,10 @@ class Room:
 
     def get_weight(self):
         return self.weight
-    
+
     def get_height(self):
         return self.height
+
 
 class App:
     def __init__(self):
@@ -67,7 +70,7 @@ class App:
 
     def update(self):
         pass
-        #for rect in self.rect:
+        # for rect in self.rect:
         #    print(rect.get_sx(), rect.get_sy(), rect.get_w(), rect.get_h())
 
     def draw(self):
@@ -94,7 +97,7 @@ class App:
             is_split = False
             x_or_y = random.randint(0, 1)
 
-            if x_or_y == 0: # x
+            if x_or_y == 0:  # x
                 a = _sx + 5
                 b = _ex - _sx - 5
 
@@ -105,8 +108,8 @@ class App:
                         self.rects.append(Rect(_sx, _sy, x, _ey))
                         self.rects.append(Rect(x, _sy, _ex, _ey))
                         is_split = True
-              
-            elif x_or_y == 1: # y
+
+            elif x_or_y == 1:  # y
                 a = _sy + 5
                 b = _ey - _sy - 5
 
@@ -117,18 +120,19 @@ class App:
                         self.rects.append(Rect(_sx, _sy, _ex, y))
                         self.rects.append(Rect(_sx, y, _ex, _ey))
                         is_split = True
-        
+
             if is_split:
                 self.rects.remove(self.rects[rect])
 
-        for rect in self.rects:
-            _width = random.randint(ROOM_MIN_SIZE, ROOM_MAX_SIZE)
-            _height = random.randint(ROOM_MIN_SIZE, ROOM_MAX_SIZE)
+#        for rect in self.rects:
+#            _width = random.randint(ROOM_MIN_SIZE, ROOM_MAX_SIZE)
+#            _height = random.randint(ROOM_MIN_SIZE, ROOM_MAX_SIZE)
+#
+#            _x = random.randint(rect.get_sx() + 1, rect.get_ex() - _width - 1)
+#            _y = random.randint(rect.get_sy() + 1, rect.get_ey() - _height - 1)
+#
+#            self.rooms.append(Room(_x, _y, _width, _height))
 
-            _x = random.randint(rect.get_sx() + 1, rect.get_ex() - _width - 1)
-            _y = random.randint(rect.get_sy() + 1, rect.get_ey() - _height - 1)
-
-            self.rooms.append(Room(_x, _y, _width, _height))
 
 if __name__ == "__main__":
     App()
